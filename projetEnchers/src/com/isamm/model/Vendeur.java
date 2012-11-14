@@ -1,79 +1,44 @@
 package com.isamm.model;
 
-
+import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
+/**
+ * Entity implementation class for Entity: Vendeur
+ *
+ */
 @Entity
-@NamedQuery(
-		name="Vendeur.findPersonneByLogin",
-	    query="SELECT v FROM Vendeur v WHERE v.login = :login"
-		)
 
-public class Vendeur {
+public class Vendeur extends Personne implements Serializable {
+
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_vendeur;
-	private String login;
-	private String mot_de_passe;
-	private String nom;
-	private String prenom;
-	private String adresse;
+	private static final long serialVersionUID = 1L;
+
+	private int code_tva;
 	
 	@OneToMany(cascade=CascadeType.MERGE)
-	private List<Produit> produits;
-	
-	
+	private List<Produit> listeProduits;
+
 	public Vendeur() {
-		
 		// TODO Auto-generated constructor stub
 	}
-	
-	public int getId_vendeur() {
-		return id_vendeur;
-	}
-	public void setId_vendeur(int id_vendeur) {
-		this.id_vendeur = id_vendeur;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getMot_de_passe() {
-		return mot_de_passe;
-	}
-	public void setMot_de_passe(String mot_de_passe) {
-		this.mot_de_passe = mot_de_passe;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public String getAdresse() {
-		return adresse;
-	}
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-	
-	
 
+	public int getCode_tva() {
+		return code_tva;
+	}
+
+	public void setCode_tva(int code_tva) {
+		this.code_tva = code_tva;
+	}
+
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
+	}
+   
 }
